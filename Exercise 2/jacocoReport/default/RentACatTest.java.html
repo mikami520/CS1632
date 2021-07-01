@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RentACatTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Coverage Report</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">RentACatTest.java</span></div><h1>RentACatTest.java</h1><pre class="source lang-java linenums">import org.junit.Test;
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
+import org.mockito.*;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+<span class="fc" id="L11">public class RentACatTest {</span>
+
+	/**
+	 * The test fixture for this JUnit test. Test fixture: a fixed state of a set of
+	 * objects used as a baseline for running tests. The test fixture is initialized
+	 * using the @Before setUp method which runs before every test case. The test
+	 * fixture is removed using the @After tearDown method which runs after each
+	 * test case.
+	 */
+
+	RentACat r; // Object to test
+	Cat c1; // First mock cat object
+	Cat c2; // Second mock cat object
+	Cat c3; // Third mock cat object
+
+	@Before
+	public void setUp() throws Exception {
+		// Turn on automatic bug injection in the Cat class, to emulate a buggy Cat.
+		// Your unit tests should work regardless of these bugs if you mock all Cats.
+<span class="fc" id="L30">		Cat.bugInjectionOn = true;</span>
+
+		// INITIALIZE THE TEST FIXTURE
+		// 1. Create a new RentACat object and assign to r
+<span class="fc" id="L34">		r = RentACat.createInstance();</span>
+
+		// 2. Create a mock Cat with ID 1 and name &quot;Jennyanydots&quot;, assign to c1
+		// TODO: Fill in
+<span class="fc" id="L38">		c1 = Mockito.mock(Cat.class);</span>
+<span class="fc" id="L39">		Mockito.when(c1.getId()).thenReturn(1);</span>
+<span class="fc" id="L40">		Mockito.when(c1.getName()).thenReturn(&quot;Jennyanydots&quot;);</span>
+		
+		// 3. Create a mock Cat with ID 2 and name &quot;Old Deuteronomy&quot;, assign to c2
+		// TODO: Fill in
+<span class="fc" id="L44">		c2 = Mockito.mock(Cat.class);</span>
+<span class="fc" id="L45">		Mockito.when(c2.getId()).thenReturn(2);</span>
+<span class="fc" id="L46">		Mockito.when(c2.getName()).thenReturn(&quot;Old Deuteronomy&quot;);</span>
+		// 4. Create a mock Cat with ID 3 and name &quot;Mistoffelees&quot;, assign to c3
+		// TODO: Fill in
+<span class="fc" id="L49">		c3 = Mockito.mock(Cat.class);</span>
+<span class="fc" id="L50">		Mockito.when(c3.getId()).thenReturn(3);</span>
+<span class="fc" id="L51">		Mockito.when(c3.getName()).thenReturn(&quot;Mistoffelees&quot;);</span>
+		// Hint: You will have to stub the mocked Cats to make them behave as if the ID
+		// is 1 and name is &quot;Jennyanydots&quot;, etc.
+<span class="fc" id="L54">	}</span>
+
+	@After
+	public void tearDown() throws Exception {
+		// Not necessary strictly speaking since the references will be overwritten in
+		// the next setUp call anyway and Java has automatic garbage collection.
+<span class="fc" id="L60">		r = null;</span>
+<span class="fc" id="L61">		c1 = null;</span>
+<span class="fc" id="L62">		c2 = null;</span>
+<span class="fc" id="L63">		c3 = null;</span>
+<span class="fc" id="L64">	}</span>
+
+	/**
+	 * Test case for Cat getCat(int id).
+	 * Preconditions: r has no cats.
+	 * Execution steps: Call getCat(2).
+	 * Postconditions: Return value is null.
+	 */
+
+	@Test
+	public void testGetCatNullNumCats0() {
+		// TODO
+<span class="fc" id="L76">		assertNull(r.getCat(2));</span>
+<span class="fc" id="L77">	}</span>
+
+	/**
+	 * Test case for Cat getCat(int id).
+	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
+	 * Execution steps: Call getCat(2).
+	 * Postconditions: Return value is not null.
+	 *                 Returned cat has an ID of 2.
+	 */
+	
+	@Test
+	public void testGetCatNumCats3() {
+		// TODO
+<span class="fc" id="L90">		r.addCat(c1);</span>
+<span class="fc" id="L91">		r.addCat(c2);</span>
+<span class="fc" id="L92">		r.addCat(c3);</span>
+<span class="fc" id="L93">		assertEquals(2, r.getCat(2).getId());</span>
+<span class="fc" id="L94">	}</span>
+
+	/**
+	 * Test case for boolean catAvailable(int id).
+	 * Preconditions: r has no cats.
+	 * Execution steps: Call catAvailable(2).
+	 * Postconditions: Return value is false.
+	 */
+
+	@Test
+	public void testCatAvailableFalseNumCats0() {
+		// TODO
+<span class="fc" id="L106">		assertFalse(r.catAvailable(2));</span>
+<span class="fc" id="L107">	}</span>
+
+	/**
+	 * Test case for boolean catAvailable(int id).
+	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
+	 *                c3 is rented.
+	 *                c1 and c2 are not rented.
+	 * Execution steps: Call catAvailable(2).
+	 * Postconditions: Return value is true.
+	 */
+
+	@Test
+	public void testCatAvailableTrueNumCats3() {
+		// TODO
+<span class="fc" id="L121">		r.addCat(c1);</span>
+<span class="fc" id="L122">		r.addCat(c2);</span>
+<span class="fc" id="L123">		r.addCat(c3);</span>
+<span class="fc" id="L124">		Mockito.when(c3.getRented()).thenReturn(true);</span>
+
+<span class="fc" id="L126">		assertTrue(&quot;return true!!&quot;, r.catAvailable(2));</span>
+<span class="fc" id="L127">	}</span>
+
+	/**
+	 * Test case for boolean catAvailable(int id).
+	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
+	 *                c2 is rented.
+	 *                c1 and c3 are not rented.
+	 * Execution steps: Call catAvailable(2).
+	 * Postconditions: Return value is false.
+	 */
+	
+	@Test
+	public void testCatAvailableFalseNumCats3() {
+		// TODO
+<span class="fc" id="L141">		r.addCat(c1);</span>
+<span class="fc" id="L142">		r.addCat(c2);</span>
+<span class="fc" id="L143">		r.addCat(c3);</span>
+<span class="fc" id="L144">		Mockito.when(c2.getRented()).thenReturn(true);</span>
+<span class="fc" id="L145">		assertFalse(r.catAvailable(2));</span>
+<span class="fc" id="L146">	}</span>
+
+	/**
+	 * Test case for boolean catExists(int id).
+	 * Preconditions: r has no cats.
+	 * Execution steps: Call catExists(2).
+	 * Postconditions: Return value is false.
+	 */
+
+	@Test
+	public void testCatExistsFalseNumCats0() {
+		// TODO
+<span class="fc" id="L158">		assertFalse(r.catExists(2));</span>
+<span class="fc" id="L159">	}</span>
+
+	/**
+	 * Test case for boolean catExists(int id).
+	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
+	 * Execution steps: Call catExists(2).
+	 * Postconditions: Return value is true.
+	 */
+	
+	@Test
+	public void testCatExistsTrueNumCats3() {
+		// TODO
+<span class="fc" id="L171">		r.addCat(c1);</span>
+<span class="fc" id="L172">		r.addCat(c2);</span>
+<span class="fc" id="L173">		r.addCat(c3);</span>
+<span class="fc" id="L174">		assertTrue(r.catExists(2));</span>
+<span class="fc" id="L175">	}</span>
+
+	/**
+	 * Test case for String listCats().
+	 * Preconditions: r has no cats.
+	 * Execution steps: Call listCats().
+	 * Postconditions: Return value is &quot;&quot;.
+	 */
+
+	@Test
+	public void testListCatsNumCats0() {
+		// TODO
+<span class="fc" id="L187">		String ret = &quot;&quot;;</span>
+<span class="fc" id="L188">		assertEquals(ret, r.listCats());</span>
+<span class="fc" id="L189">	}</span>
+
+	/**
+	 * Test case for String listCats().
+	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
+	 * Execution steps: Call listCats().
+	 * Postconditions: Return value is &quot;ID 1. Jennyanydots\nID 2. Old
+	 *                 Deuteronomy\nID 3. Mistoffelees\n&quot;.
+	 */
+	
+	@Test
+	public void testListCatsNumCats3() {
+		// TODO
+<span class="fc" id="L202">		r.addCat(c1);</span>
+<span class="fc" id="L203">		r.addCat(c2);</span>
+<span class="fc" id="L204">		r.addCat(c3);</span>
+<span class="fc" id="L205">		String str1 = &quot;ID 1. Jennyanydots&quot;;</span>
+<span class="fc" id="L206">		String str2 = &quot;ID 2. Old Deuteronomy&quot;;</span>
+<span class="fc" id="L207">		String str3 = &quot;ID 3. Mistoffelees&quot;;</span>
+<span class="fc" id="L208">		Mockito.when(c1.toString()).thenReturn(str1);</span>
+<span class="fc" id="L209">		Mockito.when(c2.toString()).thenReturn(str2);</span>
+<span class="fc" id="L210">		Mockito.when(c3.toString()).thenReturn(str3);</span>
+<span class="fc" id="L211">		String ret = &quot;ID 1. Jennyanydots\nID 2. Old Deuteronomy\nID 3. Mistoffelees\n&quot;;</span>
+<span class="fc" id="L212">		assertEquals(ret, r.listCats());</span>
+<span class="fc" id="L213">	}</span>
+
+	/**
+	 * Test case for boolean rentCat(int id).
+	 * Preconditions: r has no cats.
+	 * Execution steps: Call rentCat(2).
+	 * Postconditions: Return value is false.
+	 */
+
+	@Test
+	public void testRentCatFailureNumCats0() {
+		// TODO
+<span class="fc" id="L225">		assertFalse(r.rentCat(2));</span>
+<span class="fc" id="L226">	}</span>
+
+	/**
+	 * Test case for boolean rentCat(int id).
+	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
+	 *                c2 is rented.
+	 * Execution steps: Call rentCat(2).
+	 * Postconditions: Return value is false.
+	 *                 c1.rentCat(), c2.rentCat(), c3.rentCat() are never called.
+	 *                 
+	 * Hint: See Example/NoogieTest.java in testBadgerPlayCalled method to see an
+	 * example of behavior verification.
+	 */
+	
+	@Test
+	public void testRentCatFailureNumCats3() {
+		// TODO
+<span class="fc" id="L243">		r.addCat(c1);</span>
+<span class="fc" id="L244">		r.addCat(c2);</span>
+<span class="fc" id="L245">		r.addCat(c3);</span>
+<span class="fc" id="L246">		Mockito.when(c2.getRented()).thenReturn(true);</span>
+
+<span class="fc" id="L248">		assertFalse(r.rentCat(2));</span>
+<span class="fc" id="L249">		Mockito.verify(c1,Mockito.times(0)).rentCat();</span>
+<span class="fc" id="L250">		Mockito.verify(c2,Mockito.times(0)).rentCat();</span>
+<span class="fc" id="L251">		Mockito.verify(c3,Mockito.times(0)).rentCat();</span>
+
+<span class="fc" id="L253">	}</span>
+
+	/**
+	 * Test case for boolean returnCat(int id).
+	 * Preconditions: r has no cats.
+	 * Execution steps: Call returnCat(2).
+	 * Postconditions: Return value is false.
+	 */
+
+	@Test
+	public void testReturnCatFailureNumCats0() {
+		// TODO
+<span class="fc" id="L265">		assertFalse(r.returnCat(2));</span>
+<span class="fc" id="L266">	}</span>
+
+	/**
+	 * Test case for boolean returnCat(int id).
+	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
+	 *                c2 is rented.
+	 * Execution steps: Call returnCat(2).
+	 * Postconditions: Return value is true.
+	 *                 c2.returnCat() is called exactly once.
+	 *                 c1.returnCat() and c3.returnCat are never called.
+	 *                 
+	 * Hint: See Example/NoogieTest.java in testBadgerPlayCalled method to see an
+	 * example of behavior verification.
+	 */
+	
+	@Test
+	public void testReturnCatNumCats3() {
+		// TODO
+<span class="fc" id="L284">		r.addCat(c1);</span>
+<span class="fc" id="L285">		r.addCat(c2);</span>
+<span class="fc" id="L286">		r.addCat(c3);</span>
+<span class="fc" id="L287">		Mockito.when(c2.getRented()).thenReturn(true);</span>
+
+<span class="fc" id="L289">		assertTrue(&quot;return true!!&quot;,r.returnCat(2));</span>
+<span class="fc" id="L290">		Mockito.verify(c1,Mockito.times(0)).returnCat();</span>
+<span class="fc" id="L291">		Mockito.verify(c2,Mockito.times(1)).returnCat();</span>
+<span class="fc" id="L292">		Mockito.verify(c3,Mockito.times(0)).returnCat();</span>
+<span class="fc" id="L293">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202101150304</span></div></body></html>
