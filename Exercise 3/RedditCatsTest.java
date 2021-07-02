@@ -74,7 +74,7 @@ public class RedditCatsTest {
     assertThat(driver.findElement(By.cssSelector(".\\_8ZLJI1-ZiP7pHJ_yO1L4Z:nth-child(3) .tbIApBd2DM_drfZQJjIum")).getText(), is("No NSFW, animal abuse, or cruelty"));
   }
   @Test
-  public void fUNRULES11ITEMS() {
+  public void fUNRULES10ITEMS() {
     // Test name: FUN-RULES-11-ITEMS
     // Step # | name | target | value
     // 1 | open | https://www.reddit.com/r/cats/ | 
